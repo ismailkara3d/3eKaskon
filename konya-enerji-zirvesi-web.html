@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280">
+<title>Konya Enerji Zirvesi & Fuarı | Energy Next Türkiye</title>
+<style>
+  /* ========== RESET ========== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; }
+  body {
+    font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+    color: #1d1d1d;
+    background: #fff;
+    min-width: 1280px;
+    overflow-x: hidden;
+  }
+  img { display: block; max-width: 100%; }
+  a { text-decoration: none; color: inherit; }
+  ul { list-style: none; }
+
+  :root {
+    --green: #2bb673;
+    --green-dark: #1f9c5e;
+    --pink: #ec4d7a;
+    --pink-soft: #f06292;
+    --text: #1d1d1d;
+    --muted: #4a4a4a;
+    --pad-x: 80px;
+
+    --hero-h: 900px;
+    --strip-h: 125px;
+    --box-h: 150px;
+    --box-h-r: 135px;
+    --w-left: 220px;
+    --w-right: 260px;
+  }
+
+  /* ========== HERO ========== */
+  .hero {
+    position: relative;
+    width: 100%;
+    height: var(--hero-h);
+    overflow: hidden;
+    background:
+      url('konya-enerji-home-background.png') center center / cover no-repeat,
+      #b5bcc2;
+  }
+
+  /* ===== YATAY GRİ GRADİENT ŞERİT ===== */
+  .strip {
+    position: absolute;
+    top: 200px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: var(--strip-h);
+    background: linear-gradient(271deg, #8f9399 0%, #686d74 25%, #86888a 50%, #bababa 75%, #dadada 100%);
+    z-index: 2;
+  }
+
+  /* ===== ŞERİDİN ÜZERİNDE SOL: MARKA LOGOLARI =====
+     3EKASKON + ENERGY NEXT - soldan başlayıp sağa doğru, şeridin dikey ortasında */
+  .strip-brands {
+    position: absolute;
+    top: 200px;
+    left: var(--pad-x);
+    height: var(--strip-h);
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    z-index: 4;
+  }
+  .strip-brands img {
+    display: block;
+    height: 60px;       /* logoların yüksekliği – ayarla */
+    width: auto;
+  }
+
+  /* ===== SAĞ ÜST: ENERGY LOGO + GERİ SAYIM (alt alta) ===== */
+  .strip-right {
+    position: absolute;
+    top: 140px;
+    right: var(--pad-x);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    z-index: 5;
+  }
+  .strip-right__logo {
+    /* GÖRSEL: id="energy-corner-logo" → 90x60 */
+    width: 90px;
+    height: 60px;
+  }
+
+  /*Sayaç Kısmı*/
+
+  /* ===== FLIP COUNTDOWN ===== */
+.flip-countdown {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px; 
+  padding: 14px 18px;
+  border-radius: 4px;
+}
+
+.flip-card {
+  position: relative;
+  width: 58px;
+  height: 78px;
+  background: linear-gradient(180deg,
+    #2a2d31 0%,
+    #1a1c1f 48%,
+    #1a1c1f 52%,
+    #3a3d42 100%);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.08),
+    0 2px 4px rgba(0,0,0,0.4);
+}
+
+.flip-card::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(0,0,0,0.6);
+  z-index: 2;
+  transform: translateY(-1px);
+  box-shadow: 0 -1px 0 rgba(255,255,255,0.08);
+}
+
+.flip-card span {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 56px;
+  font-weight: 700;
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  letter-spacing: -2px;
+  text-shadow: 0 2px 3px rgba(0,0,0,0.5);
+  line-height: 1;
+}
+
+.flip-colon {
+  color: #4a4d52;
+  font-size: 42px;
+  font-weight: 700;
+  padding: 0 2px;
+  line-height: 1;
+}
+
+
+
+  /* ===== ŞERİDİN ÜZERİNDEKİ KUTU İÇERİĞİ ===== */
+  .strip-content {
+    position: absolute;
+    top: 260px;
+    left: 50px;
+    right: 0;
+    height: var(--strip-h);
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ===== KUTU GRİDİ ===== */
+  .grid {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    min-height: 270px;
+  }
+
+  /* SOL KOLON */
+  .col-left {
+    display: flex;
+    flex-direction: column;
+    width: var(--w-left);
+  }
+  .box-l {
+    height: var(--box-h);
+    background: linear-gradient(45deg, #1945B0, #254081);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-weight: 800;
+    line-height: 1.15;
+    border-bottom: 2px solid #fff;
+  }
+  .box-l:last-child { border-bottom: none; }
+
+  .box-summit { font-size: 22px; letter-spacing: 1px; }
+  .box-date { font-size: 16px; }
+  .box-visitor {
+    font-size: 15px;
+    letter-spacing: 0.8px;
+    cursor: pointer;
+    transition: background .2s;
+  }
+  .box-visitor:hover { background: var(--pink-soft); }
+
+  /* SAĞ KOLON
+     Not: --box-h 150px olduğu için, Sol-1 merkez = 75px
+     Sağ-2 merkez doğal yerleşimde 202.5px → kaydırma = 127.5px yukarı */
+  .col-right {
+    display: flex;
+    flex-direction: column;
+    width: var(--w-right);
+    transform: translateY(-127.5px);
+  }
+  .box-r {
+    height: var(--box-h-r);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-weight: 800;
+    border-bottom: 2px solid #fff;
+  }
+  .box-r:last-child { border-bottom: none; }
+
+  .box-sponsor {
+    background: linear-gradient(45deg, #009847, #B0CB21);
+    font-size: 20px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background .2s;
+  }
+  .box-sponsor:hover { background: var(--green-dark); }
+
+  .box-dedeman {
+        background: linear-gradient(45deg, #1945B0, #254081);
+    color: #1d1d1d;
+    flex-direction: row;
+    gap: 12px;
+    padding: 10px 16px;
+  }
+  .dedeman-icon {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+  }
+  .dedeman-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+    text-align: left;
+  }
+  .dedeman-text__title { font-weight: 800; font-size: 18px; letter-spacing: 0.5px; }
+  .dedeman-text__sub   { font-weight: 700; font-size: 12px; color: var(--muted); letter-spacing: 1px; }
+  .dedeman-text__sub--xs { font-size: 9px; font-weight: 500; letter-spacing: 0.3px; }
+
+  /* ALT NAV */
+  .hero__nav {
+    position: absolute;
+    bottom: 30px;
+    left: var(--pad-x);
+    right: var(--pad-x);
+    z-index: 5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .hero__nav .nav__menu { color: #ffffff; }
+  .hero__nav .nav__menu a:not(:last-child)::after { background: #ffffff; }
+  .hero__nav .nav__social a { background: #ffffff; color: #1d1d1d; }
+
+  /* ========== NAV ========== */
+  .nav__menu {
+    display: flex;
+    align-items: center;
+    font-weight: 800;
+    font-size: 15px;
+    letter-spacing: 1px;
+    color: #1d1d1d;
+  }
+  .nav__menu a {
+    padding: 0 16px;
+    position: relative;
+    transition: color .2s;
+  }
+  .nav__menu a:hover { color: var(--pink); }
+  .nav__menu a:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 14px;
+    background: #1d1d1d;
+  }
+  .nav__social { display: flex; align-items: center; gap: 6px; }
+  .nav__social a {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    background: #1d1d1d;
+    color: #fff;
+    border-radius: 3px;
+    text-align: center;
+    line-height: 24px;
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  /* ========== KÖŞE DİYAGONAL ÇİZGİLER ========== */
+  .corner-lines { position: absolute; inset: 0; pointer-events: none; z-index: 1; overflow: hidden; }
+  .corner-lines span { position: absolute; transform-origin: top center; }
+  .line-tl-green { top: -100px; left: 4%;  width: 4px; height: 460px; background: var(--green); transform: rotate(22deg); }
+  .line-t-pink   { top: -80px;  left: 22%; width: 3px; height: 320px; background: var(--pink);  transform: rotate(22deg); }
+  .line-c-green  { top: -50px;  right: 28%; width: 4px; height: 600px; background: var(--green); transform: rotate(22deg); }
+  .line-r-pink   { top: -40px;  right: 10%; width: 3px; height: 620px; background: var(--pink);  transform: rotate(22deg); }
+  .line-br-pink  { bottom: 40px; right: 5%; width: 70px; height: 4px; background: var(--pink); transform: rotate(-68deg); }
+  .line-bl-green { bottom: 60px; left: 5%;  width: 90px; height: 4px; background: var(--green); transform: rotate(-68deg); }
+
+  /* ========== BÖLÜM 2: HAKKIMIZDA ========== */
+  .about {
+    position: relative;
+    width: 100%;
+    background: #ffffff;
+    padding: 80px var(--pad-x) 50px;
+    overflow: hidden;
+    min-height: 520px;
+  }
+  .about__inner {
+    position: relative; z-index: 5;
+    display: grid;
+    grid-template-columns: var(--w-left) 1fr 320px;
+    gap: 60px;
+    align-items: flex-start;
+  }
+  .about__leftcard { display: flex; flex-direction: column; width: var(--w-left); }
+  .about__body h2 {
+    color: var(--pink);
+    font-size: 18px; font-weight: 800;
+    letter-spacing: 1.5px;
+    margin-bottom: 22px;
+  }
+  .about__body p {
+    color: #1d1d1d;
+    font-size: 13.5px;
+    line-height: 1.75;
+    text-align: justify;
+    max-width: 500px;
+  }
+  .about__rightlogo {
+    width: 320px;
+    height: 160px;
+    margin-top: 60px;
+  }
+  .section-nav {
+    position: relative; z-index: 5;
+    margin-top: 50px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+
+  /* ========== BÖLÜM 3: ALTIN SPONSORLUK ========== */
+  .gold {
+    position: relative;
+    width: 100%;
+    background: linear-gradient(180deg, #f4f5f6 0%, #e6e8ea 100%);
+    padding: 80px var(--pad-x) 50px;
+    overflow: hidden;
+    min-height: 620px;
+  }
+  .gold__inner {
+    position: relative; z-index: 5;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    min-height: 480px;
+  }
+  .gold__trophy {
+    width: 500px;
+    height: 540px;
+    margin-left: 20px;
+  }
+  .gold__right { display: flex; flex-direction: column; gap: 26px; padding-top: 60px; }
+  .gold__logo {
+    width: 260px;
+    height: 120px;
+  }
+  .gold__title {
+    color: var(--pink);
+    font-size: 24px; font-weight: 800;
+    letter-spacing: 1.5px;
+    line-height: 1.2;
+  }
+  .gold__list { display: flex; flex-direction: column; gap: 8px; }
+  .gold__list li {
+    font-size: 13.5px;
+    color: #1d1d1d;
+    line-height: 1.5;
+    position: relative;
+    padding-left: 14px;
+  }
+  .gold__list li::before {
+    content: "-";
+    position: absolute; left: 0; top: 0;
+    font-weight: 700;
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     BÖLÜM 1 - HERO
+     ============================================================ -->
+<section class="hero">
+
+  <div class="corner-lines">
+    <span class="line-tl-green"></span>
+    <span class="line-t-pink"></span>
+    <span class="line-c-green"></span>
+    <span class="line-r-pink"></span>
+  </div>
+
+  <!-- YATAY GRİ GRADİENT ŞERİT -->
+  <div class="strip"></div>
+
+  <!-- ŞERİDİN ÜZERİNDE SOL: brand-energy-logo + summit-logo (soldan sağa) -->
+  <div class="strip-brands">
+    <img src="brand-energy-logo.png" alt="">
+    <img src="summit-logo.png" alt="" style="height: 250px;">
+  </div>
+
+  <!-- SAĞ ÜST: küçük Energy logosu + 07:24 (alt alta) -->
+  <div class="strip-right">
+    <span class="strip-right__logo" id="energy-corner-logo"></span>
+    <!-- id="energy-corner-logo" → 90x60 -->
+  <div class="flip-countdown">
+  <div class="flip-card"><span>0</span></div>
+  <div class="flip-card"><span>7</span></div>
+  <div class="flip-colon">:</div>
+  <div class="flip-card"><span>2</span></div>
+  <div class="flip-card"><span>4</span></div>
+</div>
+  </div>
+
+  <!-- KUTU İÇERİĞİ (ortalanmış) -->
+  <div class="strip-content">
+
+    <div class="grid">
+
+      <!-- SOL KOLON: 3 kutu -->
+      <div class="col-left">
+        <div class="box-l box-summit" id="summit-logo">
+          <img src="konya-enerji-zirvesi-fuari.png" alt="">
+        </div>
+        <div class="box-l box-date">9-10-11<br>HAZİRAN 2026</div>
+        <div class="box-l box-visitor">ZİYARETÇİ<br>KAYIT</div>
+      </div>
+
+      <!-- SAĞ KOLON: 2 kutu, yukarı kaydırılmış -->
+      <div class="col-right">
+        <div class="box-r box-sponsor">SPONSOR KAYIT</div>
+        <div class="box-r box-dedeman">
+         
+          <div class="dedeman-text">
+        
+    <img src="konya-enerkji-dedeman.png" alt="" >
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- HERO ALT NAV -->
+  <nav class="hero__nav">
+    <div class="nav__menu">
+      <a href="#fuar">FUAR</a>
+      <a href="#katilimci">KATILIMCI</a>
+      <a href="#ziyaretci">ZİYARETÇİ</a>
+      <a href="#basin">BASIN</a>
+      <a href="#sponsorlar">SPONSORLAR</a>
+      <a href="#iletisim">İLETİŞİM</a>
+    </div>
+    <div class="nav__social">
+      <a id="social-icon-fb" title="Facebook">f</a>
+      <a id="social-icon-ig" title="Instagram">ig</a>
+      <a id="social-icon-x" title="X">x</a>
+      <a id="social-icon-in" title="LinkedIn">in</a>
+      <a id="social-icon-yt" title="YouTube">yt</a>
+    </div>
+  </nav>
+</section>
+
+<!-- ============================================================
+     BÖLÜM 2 - HAKKIMIZDA
+     ============================================================ -->
+<section class="about">
+  <div class="corner-lines">
+    <span class="line-tl-green"></span>
+    <span class="line-c-green" style="right:36%;"></span>
+    <span class="line-r-pink" style="right:8%;"></span>
+    <span class="line-br-pink"></span>
+  </div>
+
+  <div class="about__inner">
+    <div class="about__leftcard">
+      <div class="box-l box-summit">      <img src="konya-enerji-zirvesi-fuari.png" alt=""></div>
+      <div class="box-l box-date">9-10-11<br>HAZİRAN 2026</div>
+      <div class="box-l box-visitor" style="background: var(--pink);">ZİYARETÇİ<br>KAYIT</div>
+    </div>
+
+    <div class="about__body">
+      <h2>KONYA ENERJİ ZİRVESİ &amp; FUARI</h2>
+      <p>
+        Konya Enerji Zirvesi ve Fuarı, 9-10-11 Haziran 2026 tarihlerinde
+        "Dönüşümün Gücü: Temiz Enerji, Temiz Gelecek" teması ile Dedeman Konya
+        Hotel'inde gerçekleşecektir. Konya Enerji Zirvesi ve Fuarı kapsamında,
+        katılımcı ya da ziyaretçi olarak, enerji alanında çalışan bilim insanları,
+        kamu, özel ve sivil toplum kuruluşlarının üst düzey temsilcileriyle
+        tanışabilir, zirve programları çerçevesinde bu alandaki tüm yenilikleri
+        takip edebilir, uluslararası ve yerel firmalarla iş ağlarınızı
+        genişletebilirsiniz. Konya Enerji Zirvesi ve Fuarı kapsamında enerji
+        verimliliği politikaları, sanayide enerji yönetimi, bölgesel güneş ve
+        rüzgar enerji yatırımları ve bu yatırımların geleceği, temiz enerji
+        teknolojileri, lisanssız enerji üretiminde yeni dönem, enerji hukukunda
+        yeni düzenlemeler zirvenin öne çıkan konuları olacaktır.
+        Konya Enerji Zirvesi ve Fuarı Kaskon Fuarcılık tarafından organize
+        edilecektir. Konya Enerji Zirvesi ve Fuarı ile ilgili daha detaylı bilgi
+        almak ve fırsatlarla dolu bu etkinlikte yer almak için bizimle iletişime
+        geçebilirsiniz.
+      </p>
+    </div>
+
+    <div class="about__rightlogo" id="energy-next-logo-large"></div>
+  </div>
+
+  <nav class="section-nav">
+    <div class="nav__menu">
+      <a href="#fuar">FUAR</a>
+      <a href="#katilimci">KATILIMCI</a>
+      <a href="#ziyaretci">ZİYARETÇİ</a>
+      <a href="#basin">BASIN</a>
+      <a href="#sponsorlar">SPONSORLAR</a>
+      <a href="#iletisim">İLETİŞİM</a>
+    </div>
+    <div class="nav__social">
+      <a title="Facebook">f</a>
+      <a title="Instagram">ig</a>
+      <a title="X">x</a>
+      <a title="LinkedIn">in</a>
+      <a title="YouTube">yt</a>
+      <a title="Diğer">o</a>
+    </div>
+  </nav>
+</section>
+
+<!-- ============================================================
+     BÖLÜM 3 - ALTIN SPONSORLUK
+     ============================================================ -->
+<section class="gold">
+  <div class="corner-lines">
+    <span class="line-tl-green" style="left:40%;"></span>
+    <span class="line-t-pink"   style="left:46%;"></span>
+    <span class="line-c-green"  style="right:28%;"></span>
+    <span class="line-r-pink"></span>
+    <span class="line-bl-green"></span>
+    <span class="line-br-pink"></span>
+  </div>
+
+  <div class="gold__inner">
+    <div class="gold__trophy" id="gold-trophy"></div>
+
+    <div class="gold__right">
+      <div class="gold__logo" id="energy-next-logo-gold-section"></div>
+
+      <h3 class="gold__title">ALTIN<br>SPONSORLUK</h3>
+
+      <ul class="gold__list">
+        <li>Fuarın tanıtımı için yapılacaktım pazarlama çalışmalarında logo kullanımı</li>
+        <li>Katılımcı ve ziyaretçiye yönelik e-bülten gönderiminde logo kullanımı</li>
+        <li>Fuar afişinde logo kullanımı</li>
+        <li>Basılı materyallerde ve tüm reklamlarda logo kullanımı</li>
+        <li>Fuarın web sitesinde logo kullanımı</li>
+        <li>Fuar alanında 33 m2 boş stant alanı</li>
+      </ul>
+    </div>
+  </div>
+
+  <nav class="section-nav">
+    <div class="nav__menu">
+      <a href="#fuar">FUAR</a>
+      <a href="#katilimci">KATILIMCI</a>
+      <a href="#ziyaretci">ZİYARETÇİ</a>
+      <a href="#basin">BASIN</a>
+      <a href="#sponsorlar">SPONSORLAR</a>
+      <a href="#iletisim">İLETİŞİM</a>
+    </div>
+    <div class="nav__social">
+      <a title="Facebook">f</a>
+      <a title="Instagram">ig</a>
+      <a title="X">x</a>
+      <a title="LinkedIn">in</a>
+      <a title="YouTube">yt</a>
+      <a title="Diğer">o</a>
+    </div>
+  </nav>
+</section>
+
+</body>
+</html>
